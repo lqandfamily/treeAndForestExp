@@ -79,6 +79,15 @@ void testPreOrderAndShowLevelForCs() {
     preOrderAndShowLevelForCs(tree);
 }
 
+/**
+ * 测试输出广义表表示的树
+ */
+void testOutGList() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    outGList(tree);
+}
+
 int main() {
 //    testBasicCreateTree();
 //    testCreateAndTraverserCsTree();
@@ -87,6 +96,7 @@ int main() {
 //    testGetHeight();
 //    testGetLeavesCount();
 //    testLevelTraverserForCs();
-    testPreOrderAndShowLevelForCs();
+//    testPreOrderAndShowLevelForCs();
+    testOutGList();
     return 0;
 }

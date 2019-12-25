@@ -72,6 +72,27 @@ void postOrderForCs(csNode *curNode) {
 
 
 /**
+ * 输出广义表表示的树
+ * @param curNode
+ */
+void outGList(csNode *curNode) {
+    if (curNode) {
+        cout << curNode->data;
+        if (curNode->firstChild) {
+            cout << "(";            //孩子节点，打印开始标记
+            outGList(curNode->firstChild);
+        }
+        if (curNode->nextSibling) {
+            cout << ',';            //兄弟节点，打印分割标志
+            outGList(curNode->nextSibling);     //递归访问
+        } else {
+            cout << ')';      //兄弟节点结束，打印结束标志
+        }
+    }
+}
+
+
+/**
  * 孩子兄弟树的层次遍历
  * @param root
  */
