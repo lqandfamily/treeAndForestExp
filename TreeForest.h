@@ -37,6 +37,28 @@ void preOrderForCs(csNode *curNode) {
 }
 
 /**
+ * 先序遍历的递归方法
+ * @warning 如果要调用本方法，level务必传入0或1
+ * @param curNode
+ * @param level
+ */
+void preAndShowLevelForCs(csNode *curNode, int level) {
+    if (curNode != NULL) {
+        cout << '(' << curNode->data << ',' << level << ")\t";
+        preAndShowLevelForCs(curNode->firstChild, level + 1);
+        preAndShowLevelForCs(curNode->nextSibling, level);
+    }
+}
+
+/**
+ * 封装好的孩子兄弟树的先序遍历以及输出层次号
+ * @param curNode
+ */
+void preOrderAndShowLevelForCs(csNode *curNode) {
+    preAndShowLevelForCs(curNode, 1);
+}
+
+/**
  * 孩子兄弟树的后续遍历
  * @param curNode
  */

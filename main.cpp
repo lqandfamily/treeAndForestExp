@@ -1,7 +1,5 @@
 #include "TreeForest.h"
 
-//#include "createTree.h"
-
 /**
  * 测试老师代码的功能
  * 创建双亲树和遍历双亲树
@@ -72,6 +70,15 @@ void testLevelTraverserForCs() {
     levelTraverserForCs(tree);
 }
 
+/**
+ * 测试先序遍历以及打印层次号
+ */
+void testPreOrderAndShowLevelForCs() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    preOrderAndShowLevelForCs(tree);
+}
+
 int main() {
 //    testBasicCreateTree();
 //    testCreateAndTraverserCsTree();
@@ -79,6 +86,7 @@ int main() {
 //    testGetNodeCount();
 //    testGetHeight();
 //    testGetLeavesCount();
-    testLevelTraverserForCs();
+//    testLevelTraverserForCs();
+    testPreOrderAndShowLevelForCs();
     return 0;
 }
