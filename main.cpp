@@ -63,12 +63,22 @@ void testGetLeavesCount() {
     cout << "树的叶子节点总数为:" << nodeCount << endl;
 }
 
+/**
+ * 测试兄弟孩子树的层次遍历
+ */
+void testLevelTraverserForCs() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    levelTraverserForCs(tree);
+}
+
 int main() {
 //    testBasicCreateTree();
 //    testCreateAndTraverserCsTree();
 //    testPostTraverserCsTree();
 //    testGetNodeCount();
 //    testGetHeight();
-    testGetLeavesCount();
+//    testGetLeavesCount();
+    testLevelTraverserForCs();
     return 0;
 }

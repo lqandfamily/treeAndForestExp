@@ -6,8 +6,6 @@
 #ifndef ARRAY_QUEUE_H
 #define ARRAY_QUEUE_H
 
-#include <stdlib.h>
-#include "stdio.h"
 #include "createTree.h"
 
 /*************************
@@ -51,6 +49,27 @@ int init(ArrayQueue *queue) {
     queue->front = 0;
     queue->rear = 0;
     return SUCCESS;
+}
+
+/**
+ * 队列是否为空
+ * @param queue
+ * @return 返回1为空,其他为非空
+ *         NULL_POINT
+ */
+int isEmpty(ArrayQueue *queue) {
+    return queue->front == queue->rear;
+}
+
+/**
+ * 队列是否已满
+ * @param queue
+ * @return 返回1为已满,其他为非满
+ *         NULL_POINT
+ */
+int isFull(ArrayQueue *queue) {
+    //队满,入队时始终保持当前rear所指向单元不存储数据,用于区分队满,队空
+    return (queue->rear + 1) % MAX_LEN == queue->front;
 }
 
 /**
@@ -124,25 +143,5 @@ int size(ArrayQueue *queue) {
     return size >= 0 ? size : -size;
 }
 
-/**
- * 队列是否为空
- * @param queue
- * @return 返回1为空,其他为非空
- *         NULL_POINT
- */
-int isEmpty(ArrayQueue *queue) {
-    return queue->front == queue->rear;
-}
-
-/**
- * 队列是否已满
- * @param queue
- * @return 返回1为已满,其他为非满
- *         NULL_POINT
- */
-int isFull(ArrayQueue *queue) {
-    //队满,入队时始终保持当前rear所指向单元不存储数据,用于区分队满,队空
-    return (queue->rear + 1) % MAX_LEN == queue->front;
-}
 
 #endif

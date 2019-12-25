@@ -9,7 +9,7 @@
 #define TREE_FOREST_H
 
 #include "createTree.h"
-
+#include "ArrayQueue.h"
 
 /**
  * 封装孩子兄弟树的创建
@@ -49,8 +49,31 @@ void postOrderForCs(csNode *curNode) {
 }
 
 
-void levelTraverserForCs(csNode *curNode) {
+/**
+ * 孩子兄弟树的层次遍历
+ * @param root
+ */
+void levelTraverserForCs(csNode *root) {
+    //创建队列来协助层次遍历
+    ArrayQueue arrayQueue;
+    ArrayQueue *queue = &arrayQueue;
+    init(queue);
 
+    //加入根节点
+    into(root, queue);
+
+    //队不空，继续遍历
+    while (!isEmpty(queue)) {
+        csNode *tempNode;
+        out(&tempNode, queue);
+        cout << tempNode->data << endl;
+        //添加一层中的所有节点
+        tempNode = tempNode->firstChild;
+        while (tempNode != NULL) {
+            into(tempNode, queue);
+            tempNode = tempNode->nextSibling;
+        }
+    }
 }
 
 /**
