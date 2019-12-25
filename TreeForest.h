@@ -48,6 +48,28 @@ void postOrderForCs(csNode *curNode) {
 }
 
 /**
+ * 获取兄弟孩子树的叶子节点总数
+ * @param root
+ * @return
+ */
+int getLeavesCount(csNode *root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        int childSubTreeLeavesCount = getLeavesCount(root->firstChild);
+        int brotherSubTreeLeavesCount = getLeavesCount(root->nextSibling);
+        /**
+         * 这里只需要firstChild是NULL既是叶子节点
+         */
+        if (root->firstChild == NULL) {
+            return childSubTreeLeavesCount + brotherSubTreeLeavesCount + 1;
+        } else {
+            return childSubTreeLeavesCount + brotherSubTreeLeavesCount;
+        }
+    }
+}
+
+/**
  * 获取孩子孩子兄弟树的节点总数
  * @param root
  */
