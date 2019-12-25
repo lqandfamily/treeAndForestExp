@@ -33,9 +33,17 @@ void testPostTraverserCsTree() {
     postOrderForCs(tree);
 }
 
+void testGetNodeCount() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    int nodeCount = getNodeCount(tree);
+    cout << "树的节点总数为:" << nodeCount << endl;
+}
+
 int main() {
 //    testBasicCreateTree();
 //    testCreateAndTraverserCsTree();
-    testPostTraverserCsTree();
+//    testPostTraverserCsTree();
+    testGetNodeCount();
     return 0;
 }

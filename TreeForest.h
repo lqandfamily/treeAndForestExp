@@ -47,4 +47,18 @@ void postOrderForCs(csNode *curNode) {
     }
 }
 
+/**
+ * 获取孩子孩子兄弟树的节点总数
+ * @param root
+ */
+int getNodeCount(csNode *root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        return getNodeCount(root->firstChild) + getNodeCount(root->nextSibling) + 1;
+    }
+}
+
+
+
 #endif
