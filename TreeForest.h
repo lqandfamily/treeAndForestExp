@@ -10,6 +10,11 @@
 
 #include "createTree.h"
 
+/**
+ * 封装孩子兄弟树的创建
+ * @param fileFullName
+ * @return
+ */
 csNode *createChildBrotherTreeFromFile(char *fileFullName) {
     pTree tree;
     csNode *csTree;
@@ -19,7 +24,7 @@ csNode *createChildBrotherTreeFromFile(char *fileFullName) {
 }
 
 /**
- * 树的先序遍历
+ * 孩子兄弟树的先序遍历
  * @param curNode
  */
 void preOrderForCs(csNode *curNode) {
@@ -27,6 +32,18 @@ void preOrderForCs(csNode *curNode) {
         cout << curNode->data << "\t";
         preOrderForCs(curNode->firstChild);
         preOrderForCs(curNode->nextSibling);
+    }
+}
+
+/**
+ * 孩子兄弟树的后续遍历
+ * @param curNode
+ */
+void postOrderForCs(csNode *curNode) {
+    if (curNode != NULL) {
+        postOrderForCs(curNode->firstChild);
+        postOrderForCs(curNode->nextSibling);
+        cout << curNode->data << "\t";
     }
 }
 

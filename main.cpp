@@ -15,15 +15,27 @@ void testBasicCreateTree() {
     preTraverse(tree);
 }
 
+/**
+ * 测试创建兄弟孩子树和先序遍历兄弟孩子树
+ */
 void testCreateAndTraverserCsTree() {
     char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
     csNode *tree = createChildBrotherTreeFromFile(file);
     preOrderForCs(tree);
 }
 
+/**
+ * 测试兄弟孩子树的后续遍历
+ */
+void testPostTraverserCsTree() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    postOrderForCs(tree);
+}
 
 int main() {
 //    testBasicCreateTree();
-    testCreateAndTraverserCsTree();
+//    testCreateAndTraverserCsTree();
+    testPostTraverserCsTree();
     return 0;
 }
