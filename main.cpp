@@ -1,6 +1,17 @@
 #include <iostream>
+#include "createTree.h"
+
+/**
+ * 测试老师代码的功能
+ */
+void testBasicCreateTree() {
+    pTree tree;
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    CreateTreeFromFile(file, tree);
+    preTraverse(tree);
+}
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    testBasicCreateTree();
     return 0;
 }
