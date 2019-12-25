@@ -1,5 +1,6 @@
-#include <iostream>
-#include "createTree.h"
+#include "TreeForest.h"
+
+//#include "createTree.h"
 
 /**
  * 测试老师代码的功能
@@ -13,5 +14,6 @@ void testBasicCreateTree() {
 
 int main() {
     testBasicCreateTree();
+    preOrderTraverse(NULL);
     return 0;
 }

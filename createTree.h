@@ -1,3 +1,6 @@
+#ifndef CREATE_TREE_H
+#define CREATE_TREE_H
+
 //树（森林）的双亲表示定义和算法--------------------------------------------
 #define MAXLEN 100
 
@@ -347,3 +350,5 @@ void createCsTree(csNode *&T, pTree T1) {
 
 
 //孩子兄弟链表表示定义、创建算法结束---------------------------------------------------
+
+#endif
