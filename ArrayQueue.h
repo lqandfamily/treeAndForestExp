@@ -6,35 +6,30 @@
 #ifndef ARRAY_QUEUE_H
 #define ARRAY_QUEUE_H
 
-
 #include <stdlib.h>
 #include "stdio.h"
-#include "ComCode.h"
+#include "createTree.h"
+
+/*************************
+ * 操作结果码声明
+ * SUCCESS 操作成功
+ * NULL_POINT 空指针异常
+ * FULL_QUEUE 队满
+ */
+enum CODE {
+    SUCCESS = 1,
+    NULL_POINT = -1,
+    FULL_QUEUE = -2,
+    EMPTY_QUEUE = -3,
+};
 
 //数据类型定义
+typedef csNode *dataType;
 
-#ifdef INT
-typedef int elementType;
-#define END_INPUT -9999
-#endif
-
-
-/**
- * 选择底层队列结构
- */
-#ifdef ARRAY_QUEUE
-
-#ifdef CHAR
-typedef char elementType;
-#define END_INPUT '$'
-#endif
-
-
-//队列最大容量为MAX_LEN - 1
 #define MAX_LEN 30
 //数据结构定义
 typedef struct {
-    elementType data[MAX_LEN];
+    dataType data[MAX_LEN];
     int front;  //队头指针
     int rear;   //队尾指针
 } ArrayQueue;
@@ -48,26 +43,15 @@ typedef struct {
  * @return SUCCESS 初始化成功
  *         NULL_POINT
  */
-int init(ArrayQueue *queue);
-
-/**
- * 通过数组来初始化顺序栈
- * @param data 源数据
- * @param n 数组长度
- * @param *queue
- * @return SUCCESS 初始化成功
- *         FULL_QUEUE 队满
- *         NULL_POINT
- */
-int initByArray(elementType data[], int n, ArrayQueue *queue);
-
-/**
- * 通过键盘交互创建队列,以END_INPUT结束输入,若队已满,会强制结束输入
- * @param queue
- * @return NULL_POINT 空指针异常
- *         FULL_QUEUE 队满
- */
-int initByInput(ArrayQueue *queue);
+int init(ArrayQueue *queue) {
+    if (queue == NULL) {
+        return NULL_POINT;
+    }
+    printf("**************based is Array Queue*******************\n");
+    queue->front = 0;
+    queue->rear = 0;
+    return SUCCESS;
+}
 
 /**
  * 入队
@@ -77,7 +61,20 @@ int initByInput(ArrayQueue *queue);
  *         FULL_QUEUE 队满
  *         NULL_POINT
  */
-int into(elementType elem, ArrayQueue *queue);
+int into(dataType elem, ArrayQueue *queue) {
+    if (queue == NULL) {
+        return NULL_POINT;
+    }
+
+    if (isFull(queue)) {
+        return FULL_QUEUE;
+    }
+
+    //入队
+    queue->data[queue->rear] = elem;
+    queue->rear = (queue->rear + 1) % MAX_LEN;
+    return SUCCESS;
+}
 
 /**
  * 出队
@@ -86,7 +83,20 @@ int into(elementType elem, ArrayQueue *queue);
  * @return SUCCESS
  *         NULL_POINT
  */
-int out(elementType *elem, ArrayQueue *queue);
+int out(dataType *elem, ArrayQueue *queue) {
+    if (queue == NULL) {
+        return NULL_POINT;
+    }
+    //队空
+    if (isEmpty(queue)) {
+        return EMPTY_QUEUE;
+    }
+
+    //出队
+    *elem = queue->data[queue->front];
+    queue->front = (queue->front + 1) % MAX_LEN;
+    return SUCCESS;
+}
 
 /**
  * 取队头元素
@@ -95,7 +105,13 @@ int out(elementType *elem, ArrayQueue *queue);
  * @return SUCCESS
  *         NULL_POINT
  */
-int getFrontElem(elementType *elem, ArrayQueue *queue);
+int getFrontElem(dataType *elem, ArrayQueue *queue) {
+    if (queue == NULL) {
+        return NULL_POINT;
+    }
+    *elem = queue->data[queue->front];
+    return SUCCESS;
+}
 
 /**
  * 获取队列长队
@@ -103,7 +119,10 @@ int getFrontElem(elementType *elem, ArrayQueue *queue);
  * @return  SUCCESS
  *          NULL_POINT
  */
-int size(ArrayQueue *queue);
+int size(ArrayQueue *queue) {
+    int size = queue->rear - queue->front;
+    return size >= 0 ? size : -size;
+}
 
 /**
  * 队列是否为空
@@ -111,7 +130,9 @@ int size(ArrayQueue *queue);
  * @return 返回1为空,其他为非空
  *         NULL_POINT
  */
-int isEmpty(ArrayQueue *queue);
+int isEmpty(ArrayQueue *queue) {
+    return queue->front == queue->rear;
+}
 
 /**
  * 队列是否已满
@@ -119,39 +140,9 @@ int isEmpty(ArrayQueue *queue);
  * @return 返回1为已满,其他为非满
  *         NULL_POINT
  */
-int isFull(ArrayQueue *queue);
+int isFull(ArrayQueue *queue) {
+    //队满,入队时始终保持当前rear所指向单元不存储数据,用于区分队满,队空
+    return (queue->rear + 1) % MAX_LEN == queue->front;
+}
 
-/**
- * 打印显示队列中所有元素
- *  ①初始化空循环队列；
- *  ②当键盘输入奇数时，此奇数入队；
- *  ③当键盘输入偶数时，队头出队；
- *  ④当键盘输入0时，算法退出；
- *  ⑤每当键盘输入后，输出当前队列中的所有元素。
- * @param queue
- * @return NULL_POINT
- * @param queue
- * @return SUCCESS
- *         NULL_POINT
- */
-int showAll(ArrayQueue *queue);
-
-/*************************
- * 操作结果码声明
- * SUCCESS 操作成功
- * NULL_POINT 空指针异常
- * FULL_QUEUE 队满
- */
-
-
-int expByInput(ArrayQueue *queue);
-
-enum CODE {
-    SUCCESS = 1,
-    NULL_POINT = -1,
-    FULL_QUEUE = -2,
-    EMPTY_QUEUE = -3,
-};
-
-#endif
 #endif

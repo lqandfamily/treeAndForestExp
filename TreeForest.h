@@ -10,6 +10,7 @@
 
 #include "createTree.h"
 
+
 /**
  * 封装孩子兄弟树的创建
  * @param fileFullName
@@ -48,7 +49,9 @@ void postOrderForCs(csNode *curNode) {
 }
 
 
+void levelTraverserForCs(csNode *curNode) {
 
+}
 
 /**
  * 获取兄弟孩子树的叶子节点总数
