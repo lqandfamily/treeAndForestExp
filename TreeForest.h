@@ -59,6 +59,20 @@ int getNodeCount(csNode *root) {
     }
 }
 
+/**
+ * 求孩子兄弟树的高度
+ * @param root
+ * @return
+ */
+int getHeight(csNode *root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        int childSubTreeHeight = getHeight(root->firstChild) + 1;
+        int brotherSubTreeHeight = getHeight(root->nextSibling);
+        return childSubTreeHeight > brotherSubTreeHeight ? childSubTreeHeight : brotherSubTreeHeight;
+    }
+}
 
 
 #endif

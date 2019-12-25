@@ -33,6 +33,9 @@ void testPostTraverserCsTree() {
     postOrderForCs(tree);
 }
 
+/**
+ *  测试获取孩子兄弟数的总节点数
+ */
 void testGetNodeCount() {
     char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
     csNode *tree = createChildBrotherTreeFromFile(file);
@@ -40,10 +43,22 @@ void testGetNodeCount() {
     cout << "树的节点总数为:" << nodeCount << endl;
 }
 
+/**
+ *  测试获取树的高度
+ */
+void testGetHeight() {
+    char file[] = "/Users/blue/CLionProjects/treeAndForestExp/tData/tree11.tre";
+    csNode *tree = createChildBrotherTreeFromFile(file);
+    int nodeCount = getHeight(tree);
+    cout << "树的高度为:" << nodeCount << endl;
+}
+
+
 int main() {
 //    testBasicCreateTree();
 //    testCreateAndTraverserCsTree();
 //    testPostTraverserCsTree();
-    testGetNodeCount();
+//    testGetNodeCount();
+    testGetHeight();
     return 0;
 }
