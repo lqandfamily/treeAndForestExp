@@ -10,10 +10,24 @@
 
 #include "createTree.h"
 
+csNode *createChildBrotherTreeFromFile(char *fileFullName) {
+    pTree tree;
+    csNode *csTree;
+    CreateTreeFromFile(fileFullName, tree);
+    createCsTree(csTree, tree);
+    return csTree;
+}
+
 /**
  * 树的先序遍历
  * @param curNode
  */
-void preOrderTraverse(PTNode *curNode);
+void preOrderForCs(csNode *curNode) {
+    if (curNode != NULL) {
+        cout << curNode->data << "\t";
+        preOrderForCs(curNode->firstChild);
+        preOrderForCs(curNode->nextSibling);
+    }
+}
 
 #endif
